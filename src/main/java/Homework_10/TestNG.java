@@ -25,16 +25,19 @@ public class TestNG {
         int mul = a * b;
         Assert.assertEquals(mul, result);
     }
+
     @Test(dataProvider = "data-provider", dataProviderClass = Data.class, groups = "test4")
 
-    public void mod(int a, int b, int result){
+    public void mod(int a, int b, int result) {
         int mod = a / b;
         Assert.assertEquals(mod, result);
-}
+    }
+
     @Test(dataProvider = "data-provider", dataProviderClass = Data.class, groups = "test5")
 
     public void pro(int a, int b, int result) {
         int pro = (a * b) / 100;
         Assert.assertEquals(pro, result);
-    }}
+    }
+}
 
