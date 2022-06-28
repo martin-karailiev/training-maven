@@ -3,6 +3,7 @@
     <test name="Test-method test" group-by-instances="true">
         <classes>
             <class name="Homework_10.TestNG" />
+            <class name="RestAssuredDemo.RestTest" />
         </classes>
     </test>
 
