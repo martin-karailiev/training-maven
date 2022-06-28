@@ -131,30 +131,17 @@ public class RestTest {
     }
 
     @Test(dependsOnGroups = "signup")
-    public void testCreatePost(@Optional String caption, @Optional("pass1234") String password) {
-        LoginDto loginDto = new LoginDto();
+    public void testCreatePost() {
 
-        loginDto.setUsernameOrEmail(username);
-        loginDto.setPassword(password);
-
-        Response response = given()
-                .log()
-                .all()
-                .header("Content-Type", "application/json")
-                .body(loginDto)
-                .when()
-                .post("/users/login")
-                .then()
-                .log()
-                .all()
-                .extract()
-                .response();
         JSONObject body = new JSONObject();
-        body.put("caption", "test post");
+        body.put("caption", "test");
+        body.put("coverUrl", "https://s13emagst.akamaized.net/products/36399/36398604/images/res_152938e6bbb1089d728813ac604a22b1.jpg");
+        body.put("postStatus", "public");
         Response response1 = given()
                 .log()
                 .all()
-                .header("Content-Type", "application/json")
+                .header("Authorization", accessToken)
+                .contentType(ContentType.JSON)
                 .body(body)
                 .when()
                 .post("/posts")
@@ -162,7 +149,7 @@ public class RestTest {
                 .extract()
                 .response();
 
-        int statusCode = response.statusCode();
+        int statusCode = response1.statusCode();
         Assert.assertEquals(statusCode, HttpStatus.SC_CREATED);
 
     }
